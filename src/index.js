@@ -29,10 +29,14 @@ module.exports = function(name, type = 'user') {
         if (arrMatches && arrMatches.length > 0) {
           const id = arrMatches[0].split('"').pop();
           resolve(id);
+          return;
         }
         reject(`Id not found for ${name}`);
       } else {
-        reject(res);
+        const error = new Error(`${res.statusCode}: id not found for ${name}`);
+        error.statusCode = res.statusCode;
+        error.body = body;
+        reject(error);
       }
     });
   });
