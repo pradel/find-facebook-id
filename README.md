@@ -20,7 +20,7 @@ import findFacebookId from 'find-facebook-id';
 const id = await findFacebookId('zuck');
 
 findFacebookId('zuck').then((id) => {
-  console.log(`facebook id for zuck is: ${id}`);
+  console.log(`facebook id of zuck is: ${id}`);
 }).catch((err) => {
   console.log(err);
 });

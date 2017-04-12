@@ -14,7 +14,7 @@ if (!cmd || cmd === '-h' || cmd === '--help') {
 }
 
 findFacebookId(cmd).then((id) => {
-  console.log(`facebook id for ${cmd} is: ${id}`);
+  console.log(`Facebook id of ${cmd} is: ${id}`);
 }).catch((err) => {
   console.log(err.message || err);
 });
