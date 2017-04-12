@@ -1,6 +1,6 @@
 {
   "name": "find-facebook-id",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src",
