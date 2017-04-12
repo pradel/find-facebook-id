@@ -3,7 +3,11 @@
 [![npm version](https://badge.fury.io/js/find-facebook-id.svg)](https://badge.fury.io/js/find-facebook-id)
 [![CircleCI](https://circleci.com/gh/pradel/find-facebook-id.svg?style=svg)](https://circleci.com/gh/pradel/find-facebook-id)
 
-Find a facebook id given an url.
+Find a facebook id given a Facebook name.
+
+Support:
+- users
+- pages
 
 ### Install
 ```
