@@ -2,18 +2,20 @@
 const findFacebookId = require('../src/index');
 
 const cmd = process.argv[2];
+const token = process.argv[3];
 
 if (!cmd || cmd === '-h' || cmd === '--help') {
   console.log(`
   Usage
     $ find-facebook-id <username/pagename>
+    $ find-facebook-id <groupname> <facebook-access-token>
   Help
-    $ backpack -h --help
+    $ find-facebook-id -h --help
   `);
   process.exit(0);
 }
 
-findFacebookId(cmd).then((id) => {
+findFacebookId(cmd, token).then((id) => {
   console.log(`Facebook id of ${cmd} is: ${id}`);
 }).catch((err) => {
   console.log(err.message || err);

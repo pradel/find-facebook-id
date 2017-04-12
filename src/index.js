@@ -1,7 +1,11 @@
 const request = require('request');
 
-module.exports = function findFacebookId(name, type = 'user') {
+module.exports = function findFacebookId(name, token) {
   return new Promise((resolve, reject) => {
+    let type = 'user';
+    if (token) {
+      type = 'group';
+    }
     if (!name) {
       reject('Invalid url');
       return;
@@ -13,7 +17,7 @@ module.exports = function findFacebookId(name, type = 'user') {
         url = `https://www.facebook.com/${name}`;
         break;
       case 'group':
-        url = `https://www.facebook.com/groups/${name}`;
+        url = `https://graph.facebook.com/v2.8/search?q=${name}&type=group&access_token=${token}`;
         break;
       default:
         reject('Invalid type');
@@ -29,18 +33,41 @@ module.exports = function findFacebookId(name, type = 'user') {
       if (err) {
         reject(err);
       } else if (res.statusCode === 200) {
-        const arrMatches = body.match(/entity_id":"\d*/i);
-        if (arrMatches && arrMatches.length > 0) {
-          const id = arrMatches[0].split('"').pop();
-          resolve(id);
-          return;
+        if (type === 'group') {
+          try {
+            body = JSON.parse(body); // eslint-disable-line
+          } catch (parseError) {
+            reject('Error when parsing json response');
+            return;
+          }
+          if (body.data.length > 0) {
+            resolve(body.data[0].id);
+            return;
+          }
+        } else {
+          const arrMatches = body.match(/entity_id":"\d*/i);
+          if (arrMatches && arrMatches.length > 0) {
+            const id = arrMatches[0].split('"').pop();
+            resolve(id);
+            return;
+          }
         }
         reject(`Id not found for ${name}`);
       } else {
         const error = new Error(`${res.statusCode}: id not found for ${name}`);
         error.statusCode = res.statusCode;
         error.body = body;
-        reject(error);
+        if (type === 'group') {
+          try {
+            body = JSON.parse(body); // eslint-disable-line
+          } catch (parseError) {
+            reject('Error when parsing json response');
+            return;
+          }
+          reject(body.error.message);
+        } else {
+          reject(error);
+        }
       }
     });
   });

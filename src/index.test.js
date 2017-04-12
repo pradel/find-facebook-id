@@ -10,6 +10,15 @@ test('should resolve facebook page', () =>
     expect(id).toBe('273706360456');
   }));
 
+test('should resolve facebook group', () =>
+  findFacebookId('groupsatopenuniversity', 'token')
+    .then(() => {
+      throw new Error();
+    })
+    .catch((err) => {
+      expect(err).toBe('Invalid OAuth access token.');
+    }));
+
 test('should pass error', () =>
   findFacebookId('404notexistonfacebook')
     .then(() => {

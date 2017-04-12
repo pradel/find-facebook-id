@@ -8,6 +8,7 @@ Find a facebook id given a Facebook name.
 Support:
 - users
 - pages
+- groups (You will need a valid facebook access token)
 
 ### Install
 ```
@@ -28,6 +29,13 @@ findFacebookId('zuck').then((id) => {
 }).catch((err) => {
   console.log(err);
 });
+
+// To query a group you must pass a valid facebook access token
+findFacebookId('groupsatopenuniversity', facebookAccessToken).then((id) => {
+  console.log(`facebook id of groupsatopenuniversity is: ${id}`);
+}).catch((err) => {
+  console.log(err);
+});
 ```
 
 ### Cli
@@ -40,4 +48,5 @@ npm i -g find-facebook-id
 Usage:
 ```
 $ find-facebook-id <username/pagename>
+$ find-facebook-id <groupname> <facebook-access-token>
 ```
