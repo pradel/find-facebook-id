@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+const findFacebookId = require('../src/index');
+
+const cmd = process.argv[2];
+
+if (!cmd) {
+  console.log(`
+  Usage
+    $ find-facebook-id <username/pagename>
+  `);
+  process.exit(0);
+}
+
+findFacebookId(cmd).then((id) => {
+  console.log(`facebook id for ${cmd} is: ${id}`);
+}).catch((err) => {
+  console.log(err.message || err);
+});

@@ -9,6 +9,9 @@
   "repository": "https://github.com/pradel/find-facebook-id.git",
   "author": "Pradel Léo <pradel.leo@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "find-facebook-id": "./bin/index"
+  },
   "dependencies": {
     "request": "^2.81.0"
   },

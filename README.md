@@ -11,7 +11,7 @@ yarn add find-facebook-id
 npm i --save find-facebook-id
 ```
 
-# Usage
+### Usage
 ```javascript
 import findFacebookId from 'find-facebook-id';
 
@@ -21,7 +21,19 @@ const id = await findFacebookId('zuck');
 
 findFacebookId('zuck').then((id) => {
   console.log(`facebook id for zuck is: ${id}`);
-}).catch((err) {
+}).catch((err) => {
   console.log(err);
 });
+```
+
+### Cli
+Install:
+```
+yarn global add find-facebook-id
+npm i -g find-facebook-id
+```
+
+Usage:
+```
+$ find-facebook-id <username/pagename>
 ```
