@@ -3,10 +3,12 @@ const findFacebookId = require('../src/index');
 
 const cmd = process.argv[2];
 
-if (!cmd) {
+if (!cmd || cmd === '-h' || cmd === '--help') {
   console.log(`
   Usage
     $ find-facebook-id <username/pagename>
+  Help
+    $ backpack -h --help
   `);
   process.exit(0);
 }
